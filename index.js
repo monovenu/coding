@@ -108,9 +108,11 @@ function merge(array,l,mid,r){
   }
   while(i<=mid){
     result.push(array[i]);
+    i++;
   }
   while(j<=r){
     result.push(array[j]);
+    j++;
   }
   let t=l;
   for(let k=0;k<result.length;k++,t++){
