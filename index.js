@@ -1,6 +1,6 @@
 //排序数组 - 给定一个整数数组 nums，将该数组升序排列。
 
-let array = [5, 1, 3, 2, 0, 6];
+let array = [5, 1, 3, 2, 0, 6, 2];
 
 function sortArrayBubble(array) {
   let n = array.length;
@@ -30,7 +30,7 @@ function chooseSort(array) {
       }
     }
     if (minIndex != i) {
-      [array[minIndex],array[i]]=[array[i],array[minIndex]]
+      [array[minIndex], array[i]] = [array[i], array[minIndex]];
     }
   }
 }
@@ -49,5 +49,37 @@ function insertSort(array) {
     array[j + 1] = temp;
   }
 }
-chooseSort(array);
-console.log(array);
+
+
+quickSort(array);
+// console.log(array);
+
+function quickSort(array) {
+  quickSortHelper(array, 0, array.length - 1);
+}
+
+function quickSortHelper(array, l, r) {
+  if (l == r) return;
+  let midIndex = l + Math.floor(Math.random() * (r - l + 1));
+  let mid = array[midIndex];
+  swap(array,midIndex, r);
+  let i=l;
+  let j=r-1;
+  while(i<=j){
+    if(array[i]<mid){
+      i++
+    }else{
+      swap(i,j);
+      j--;
+    }
+  }
+  swap(array,i,r);
+  quickSortHelper(array,l,i-1);
+  quickSortHelper(array,i+1,r);
+}
+
+function swap(array, a, b) {
+  let temp = array[a];
+  array[a] = array[b];
+  array[b] = temp;
+}
