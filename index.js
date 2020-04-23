@@ -52,14 +52,14 @@ function insertSort(array) {
 
 
 quickSort(array);
-// console.log(array);
+console.log(array);
 
 function quickSort(array) {
   quickSortHelper(array, 0, array.length - 1);
 }
 
 function quickSortHelper(array, l, r) {
-  if (l == r) return;
+  if (l >= r) return;
   let midIndex = l + Math.floor(Math.random() * (r - l + 1));
   let mid = array[midIndex];
   swap(array,midIndex, r);
@@ -69,7 +69,7 @@ function quickSortHelper(array, l, r) {
     if(array[i]<mid){
       i++
     }else{
-      swap(i,j);
+      swap(array,i,j);
       j--;
     }
   }
@@ -82,4 +82,37 @@ function swap(array, a, b) {
   let temp = array[a];
   array[a] = array[b];
   array[b] = temp;
+}
+
+function mergeSort(array){
+  mergerSortHelper(array,0,array.length-1);
+}
+function mergerSortHelper(array,l,r){
+  if(l>=r) return;
+  let mid=l+Math.floor((r-l)/2);
+  mergerSortHelper(array,l,mid);
+  mergerSortHelper(array,mid+1,r);
+  merge(array,l,mid,r);
+}
+function merge(array,l,mid,r){
+  let i=l;
+  let j=mid+1;
+  let result=[];
+  while(i<=mid&&j<=r){
+    if(array[i]<array[j]){
+      result.push(array[i]);
+    }else {
+      result.push(array[j]);
+    }
+  }
+  while(i<=mid){
+    result.push(array[i]);
+  }
+  while(j<=r){
+    result.push(array[j]);
+  }
+  let t=l;
+  for(let k=0;k<result.length;k++,t++){
+    array[t]=result[k];
+  }
 }
