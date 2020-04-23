@@ -100,8 +100,10 @@ function merge(array,l,mid,r){
   while(i<=mid&&j<=r){
     if(array[i]<array[j]){
       result.push(array[i]);
+      i++;
     }else {
       result.push(array[j]);
+      j++;
     }
   }
   while(i<=mid){
