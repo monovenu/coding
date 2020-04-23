@@ -51,8 +51,7 @@ function insertSort(array) {
 }
 
 
-quickSort(array);
-console.log(array);
+
 
 function quickSort(array) {
   quickSortHelper(array, 0, array.length - 1);
@@ -116,3 +115,6 @@ function merge(array,l,mid,r){
     array[t]=result[k];
   }
 }
+
+mergeSort(array);
+console.log(array);
