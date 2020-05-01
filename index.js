@@ -10,9 +10,9 @@ var obj = {
   b: 3
 };
 
-function test(c) {
+function test(c,d) {
   console.log(this)
-  console.log(this.a + this.b,c);
+  console.log(this.a + this.b,c,d);
 }
 
 // bind(test,obj)();
@@ -32,7 +32,7 @@ Function.prototype.call2=function(o,...args){
   return result;
 }
 
-test.call2(null,2);
+test.call2(null,2,3);
 // console.log(result);
 
 //函数默认参数允许在没有值或undefined
