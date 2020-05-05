@@ -59,4 +59,38 @@ let oo={
 test.call2(oo,1,23333);
 test.apply2(oo);
 test.bind(oo,1,6)();
+//数组降维
+let res=flattenDeep([1, [[2], [3, [4]], 5]]);
+console.log(res)
+function flattenDeep(arr){
+  if(!Array.isArray(arr)){
+    return [arr];
+  }
+  let res=[];
+  arr.forEach((ele)=>{
+    if(Array.isArray(ele)){
+      res=res.concat(flattenDeep(ele));
+    }else {
+      res.push(ele);
+    }
+  });
+  return res;
+}
 
+let pushV=[1,2,3,4,5];
+let popV=[4,5,3,2,1];
+
+function isPoporder(pushV,popV){
+  let stack=[];
+  let j=0;
+  for(let i=0;i<pushV.length;i++){
+    stack.push(pushV[i]);
+    while(j<popV.length && stack[stack.length-1]==popV[j]){
+      stack.pop();
+      j++;
+    }
+  }
+  return stack.length==0;
+}
+let res=isPoporder(pushV,popV);
+console.log(res);
