@@ -94,3 +94,22 @@ function isPoporder(pushV,popV){
 }
 let res=isPoporder(pushV,popV);
 console.log(res);
+
+function isSame(a,b){
+  if(a===b) return true;
+  if(typeof a!==typeof b) return false;
+
+  if(typeof a=='object' && typeof b=='object'){
+    let len1=Object.keys(a).length;
+    let len2=Object.keys(b).length;
+    if(len1!=len2) return false;
+  }
+  return Object.keys(a).every((key)=>{
+    if(typeof a[key]=='object'){
+      return isSame(a[key],b[key]);
+    }else {
+      return a[key]===b[key];
+    }
+  })
+}
+console.log(isSame({a:1},{a:1}))
