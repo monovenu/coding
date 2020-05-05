@@ -11,7 +11,7 @@ var obj = {
 };
 
 function test(c,d) {
-  console.log(this)
+  console.log(1,this)
   console.log(this.a + this.b,c,d);
 }
 
@@ -24,15 +24,39 @@ let o={
 }
 // o.tessssst();
 
+
+//函数默认参数允许在没有值或undefined
+
 Function.prototype.call2=function(o,...args){
   o=o||window;
-  o.fn=this; //给o添加属性test
-  const result=o.fn(...args);
+  o.fn=this;// this是test
+  let result=o.fn(...args);
   delete o.fn;
   return result;
 }
+Function.prototype.apply2=function(o,array=[]){
+  o=o||window;
+  o.fn=this;
+  let result=o.fn(...array);
+  delete o.fn;
+  return result;
+}
+Function.prototype.bind=function(o,...args){
+  o=o||window;
+  let con=this;
+  return function(){
+    o.fn=con;
+    let result=o.fn(...args);
+    delete o.fn;
+    return result;
+  }
+}
 
-test.call2(null,2,3);
-// console.log(result);
+let oo={
+  a:10,
+  b:20
+}
+test.call2(oo,1,23333);
+test.apply2(oo);
+test.bind(oo,1,6)();
 
-//函数默认参数允许在没有值或undefined
